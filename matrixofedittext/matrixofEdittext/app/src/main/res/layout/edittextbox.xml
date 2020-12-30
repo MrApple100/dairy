@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <EditText
+    <EditText xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/edittextbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:minHeight="15dp"
-        android:minWidth="10dp"
+        android:minHeight="10dp"
+        android:minWidth="15dp"
         android:singleLine="true"
-        android:layout_margin="1dp">
+        android:layout_margin="1dp"
+        android:background="@android:color/darker_gray">
     </EditText>
-</LinearLayout>

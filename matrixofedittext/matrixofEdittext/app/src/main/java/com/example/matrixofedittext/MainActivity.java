@@ -19,14 +19,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         GridLayout grid=(GridLayout) findViewById(R.id.Grid);
         int y=10;
-        int x=10;
-        Button matrixedittext[]=new Button[x*y];
+        int x=100;
+        EditText matrixedittext[]=new EditText[x*y];
         for(int i=0;i<(y*x);i++){
             //matrixedittext[i]=new EditText(this);
            // matrixedittext[i]=(EditText) inf(R.id.edittextbox);
             LayoutInflater inflater = (LayoutInflater) getApplicationContext()
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            matrixedittext[i] = (Button) inflater.inflate(R.layout.cell, grid, false);
+            matrixedittext[i] = (EditText) inflater.inflate(R.layout.edittextbox, grid, false);
             //matrixedittext[i].setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         }
 
