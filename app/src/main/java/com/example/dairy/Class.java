@@ -15,4 +15,14 @@ public class Class extends UnitSociety{
         Learners= Arrays.copyOf(Learners, Learners.length+1);
         Learners[Learners.length-1]=learner;
     }
+    public void addElective(Elective elective){
+        for (Learner learner: Learners) {
+            learner.addElective(elective);
+        }
+    }
+    public void addSection(Section section){
+        for (Learner learner: Learners) {
+            learner.addSection(section);
+        }
+    }
 }

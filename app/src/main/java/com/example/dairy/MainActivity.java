@@ -18,7 +18,13 @@ public class MainActivity extends AppCompatActivity {
         System.out.println(classroom1.getList()[0]);
         school1.addClasses(classroom1);
         school1.UpdateLearners();
-        Elective elective=new Elective("math");
-        System.out.println(school1.getElectronicJournal(learner1)[0]);
+        System.out.println(school1.getListLearners().length);
+        Elective elective1=new Elective("math");
+        school1.addElective(elective1);
+        classroom1.addElective(elective1);
+        System.out.println(school1.getListLearners()[0].getElective().length);
+        System.out.println(school1.getListLearners()[0].getSection().length);
+
+        System.out.println(school1.getElectronicJournal(learner1)[0][0]);
     }
 }
