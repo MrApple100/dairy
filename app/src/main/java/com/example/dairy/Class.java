@@ -11,6 +11,18 @@ public class Class extends UnitSociety{
         ClassTeacher = classTeacher;
     }
 
+    public String getNumber() {
+        return Number;
+    }
+
+    public Teacher getClassTeacher() {
+        return ClassTeacher;
+    }
+
+    public void setClassTeacher(Teacher classTeacher) {
+        ClassTeacher = classTeacher;
+    }
+
     public void addLearners(Learner learner){
         Learners= Arrays.copyOf(Learners, Learners.length+1);
         Learners[Learners.length-1]=learner;
