@@ -12,29 +12,31 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class Adapter  extends RecyclerView.Adapter<Adapter.ViewHolder>{
+public class AdapterEl  extends RecyclerView.Adapter<Adapter.ViewHolder>{
     private int staticTag=0;
+    private String TagIdconst="El";
     private final LayoutInflater inflater;
-    private final List<Class> classes;
+    private final List<Elective> classes;
 
-    Adapter(Context context, List<Class> classes) {
+    AdapterEl(Context context, List<Elective> classes) {
         this.classes = classes;
         this.inflater = LayoutInflater.from(context);
     }
     @Override
     public Adapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = inflater.inflate(R.layout.item, parent, false);
+        View view = inflater.inflate(R.layout.itemelective, parent, false);
         view.setTag(staticTag);
         staticTag++;
-        return new ViewHolder(view);
+
+        return new Adapter.ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(Adapter.ViewHolder holder, int position) {
-        Class classroom = classes.get(position);
-        holder.nameView.setText(classroom.getNumber());
-        holder.describeView.setText(classroom.getClassTeacher().getFullName()+" / "+classroom.getList().length);
+        Elective classroom = classes.get(position);
+        holder.nameView.setText(classroom.getAcademicSubject());
+        holder.describeView.setText(classroom.getClassTeacher().FullName+" / "+classroom.getList().length);
         holder.delete.setTag(staticTag-1);
     }
 
@@ -46,11 +48,13 @@ public class Adapter  extends RecyclerView.Adapter<Adapter.ViewHolder>{
     public static class ViewHolder extends RecyclerView.ViewHolder {
         final TextView nameView, describeView;
         Button delete;
+        String Tagid;
         ViewHolder(View view){
             super(view);
             nameView = (TextView) view.findViewById(R.id.name);
             describeView = (TextView) view.findViewById(R.id.describe);
             delete =(Button) view.findViewById(R.id.delete);
+            Tagid="El";
 
         }
     }

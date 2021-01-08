@@ -1,9 +1,13 @@
 package com.example.dairy;
 
 public class Elective extends UnitSociety{
-    String AcademicSubject;
+    private String AcademicSubject;
 
     public Elective(String academicSubject) {
         AcademicSubject = academicSubject;
+    }
+
+    public String getAcademicSubject() {
+        return AcademicSubject;
     }
 }

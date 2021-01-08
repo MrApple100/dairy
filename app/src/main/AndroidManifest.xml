@@ -22,6 +22,9 @@
         <activity android:name=".MyClass">
 
         </activity>
+        <activity android:name=".MyOtherUnitsSociety">
+
+        </activity>
     </application>
 
 </manifest>

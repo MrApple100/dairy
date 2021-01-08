@@ -1,5 +1,6 @@
 package com.example.dairy;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,20 +18,20 @@ public class MyClass extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.creatclass);
         //School school1=new School("Bratsk","Lyceum");
-        Learner learner1=new Learner("Запорожских",123456);
-        Teacher teacher1=new Teacher("Купидоновна",123456,"Mathperson","high");
-        Class classroom1=new Class("11A",teacher1);
-        classroom1.addLearners(learner1);
+        //Learner learner1=new Learner("Запорожских",123456);
+        //Teacher teacher1=new Teacher("Купидоновна",123456,"Mathperson","high");
+        //Class classroom1=new Class("11A",teacher1);
+        //classroom1.addLearners(learner1);
         //school1.addClasses(classroom1);
         //school1.UpdateLearners();
 
-        Elective elective1=new Elective("math");
+        //Elective elective1=new Elective("math");
         //school1.addElective(elective1);
-        classroom1.addElective(elective1);
+        //classroom1.addElective(elective1);
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
         Button button=(Button) findViewById(R.id.button);
-
+        Button ClasstoUnits=(Button) findViewById(R.id.ClasstoUnits);
         EditText NameClass=(EditText) findViewById(R.id.NameClass);
         EditText teacher=(EditText) findViewById(R.id.Teacher);
         View.OnClickListener listener=new View.OnClickListener() {
@@ -54,11 +55,16 @@ public class MyClass extends AppCompatActivity {
                         NameClass.setText("");
                         teacher.setText("");
                     break;
+                    case R.id.ClasstoUnits:
+                        Intent intent=new Intent(MyClass.this,MyOtherUnitsSociety.class);
+                        startActivity(intent);
+                        break;
 
                 }
             }
         };
         button.setOnClickListener(listener);
+        ClasstoUnits.setOnClickListener(listener);
 
     }
     public void OnClickList(View v) {
@@ -66,7 +72,7 @@ public class MyClass extends AppCompatActivity {
         EditText Teacher=(EditText) findViewById(R.id.Teacher);
         Class tempclass=classes.get((int)v.getTag());
         NameClass.setText(tempclass.getNumber());
-        Teacher.setText(tempclass.getClassTeacher().FullName);
+        Teacher.setText(tempclass.getClassTeacher().getFullName());
     }
     public void DELETE(View v){
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);

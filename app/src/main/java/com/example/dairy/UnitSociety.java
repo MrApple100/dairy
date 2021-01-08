@@ -9,7 +9,12 @@ public class UnitSociety {
     public Learner[] getList(){
         return Learners;
     }
-
+    public Teacher getClassTeacher() {
+        return ClassTeacher;
+    }
+    public void setClassTeacher(Teacher classTeacher) {
+        ClassTeacher = classTeacher;
+    }
     protected Mark[] getMarks(Learner learner){
         Mark[] marks=new Mark[10];
         for(int i=0;i<AllMarksOfLearners.length;i++) {

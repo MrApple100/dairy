@@ -8,4 +8,12 @@ public class Person {
         FullName = fullName;
         Phone = phone;
     }
+
+    public String getFullName() {
+        return FullName;
+    }
+
+    public long getPhone() {
+        return Phone;
+    }
 }
