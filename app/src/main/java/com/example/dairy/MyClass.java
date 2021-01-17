@@ -12,8 +12,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class MyClass extends AppCompatActivity {
-    ArrayList<Class> classes = new ArrayList<Class>();
+    private static ArrayList<Class> classes = new ArrayList<Class>();
+
+    public  ArrayList<Class> getClasses() {
+        return classes;
+    }
+
+    public void setClasses(ArrayList<Class> classes) {
+        MyClass.classes = classes;
+    }
+
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.creatclass);

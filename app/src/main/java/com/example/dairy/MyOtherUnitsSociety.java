@@ -1,5 +1,6 @@
 package com.example.dairy;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,8 +15,24 @@ import java.util.ArrayList;
 
 public class MyOtherUnitsSociety extends AppCompatActivity {
 
-    ArrayList<Elective> electives = new ArrayList<Elective>();
-    ArrayList<Section> sections = new ArrayList<Section>();
+    private static ArrayList<Elective> electives = new ArrayList<Elective>();
+    private static ArrayList<Section> sections = new ArrayList<Section>();
+
+    public ArrayList<Elective> getElectives() {
+        return electives;
+    }
+
+    public void setElectives(ArrayList<Elective> electives) {
+        MyOtherUnitsSociety.electives = electives;
+    }
+
+    public ArrayList<Section> getSections() {
+        return sections;
+    }
+
+    public void setSections(ArrayList<Section> sections) {
+        MyOtherUnitsSociety.sections = sections;
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -24,6 +41,7 @@ public class MyOtherUnitsSociety extends AppCompatActivity {
         RecyclerView recyclerViewEl = (RecyclerView) findViewById(R.id.listEl);
         RecyclerView recyclerViewS = (RecyclerView) findViewById(R.id.listS);
         Button button = (Button) findViewById(R.id.buttonUnitSociety);
+        Button next =(Button) findViewById(R.id.Next);
         EditText NameClass = (EditText) findViewById(R.id.NameUnitSociety);
         EditText teacher = (EditText) findViewById(R.id.Teacher);
         RadioButton RadEl = (RadioButton) findViewById(R.id.RadEl);
@@ -70,13 +88,15 @@ public class MyOtherUnitsSociety extends AppCompatActivity {
                         teacher.setText("");
                         break;
                     case R.id.Next:
-
+                        Intent intent=new Intent(MyOtherUnitsSociety.this,MyConectionClassandLearners.class);
+                        startActivity(intent);
                         break;
 
                 }
             }
         };
         button.setOnClickListener(listener);
+        next.setOnClickListener(listener);
     }
     public void OnClickListEl(View v) {
         EditText NameClass=(EditText) findViewById(R.id.NameUnitSociety);

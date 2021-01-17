@@ -1,5 +1,6 @@
 package com.example.dairy;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class UnitSociety {
@@ -15,6 +16,15 @@ public class UnitSociety {
     public void setClassTeacher(Teacher classTeacher) {
         ClassTeacher = classTeacher;
     }
+
+    public void setLearners(ArrayList<Learner> learners) {
+        Learners= Arrays.copyOf(Learners, learners.size());
+        for(int i=0;i<learners.size();i++){
+            Learners[i] = learners.get(i);
+        }
+
+    }
+
     protected Mark[] getMarks(Learner learner){
         Mark[] marks=new Mark[10];
         for(int i=0;i<AllMarksOfLearners.length;i++) {

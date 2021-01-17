@@ -14,7 +14,6 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:text="name"
-        android:textSize="32dp"
 
         app:layout_constraintBottom_toTopOf="@+id/describe"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -31,16 +30,16 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name" />
 
-    <Button
-        android:id="@+id/delete"
+    <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="DELETE"
-        android:text="Delete"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
-
-    </Button>
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name"
+        android:layout_marginRight="16dp"
+        android:text="Choose"
+        android:textColor="@color/purple_500">
+    </CheckBox>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

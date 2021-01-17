@@ -16,4 +16,8 @@ public class Person {
     public long getPhone() {
         return Phone;
     }
+
+    public void setPhone(long phone) {
+        Phone = phone;
+    }
 }

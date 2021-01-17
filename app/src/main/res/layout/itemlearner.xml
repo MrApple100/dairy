@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="100dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:onClick="OnClickList"
+    android:onClick="OnClickListLearner"
     android:background="#F2F0F6">
 
     <TextView
@@ -14,7 +14,6 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:text="name"
-        android:textSize="32dp"
 
         app:layout_constraintBottom_toTopOf="@+id/describe"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -35,7 +34,7 @@
         android:id="@+id/delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="DELETE"
+        android:onClick="DELETElearner"
         android:text="Delete"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent">

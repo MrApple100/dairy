@@ -12,24 +12,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class Adapter  extends RecyclerView.Adapter<Adapter.ViewHolder>{
+public class AdapterwithoutDelete  extends RecyclerView.Adapter<Adapter.ViewHolder>{
     private int staticTag=0;
     private final LayoutInflater inflater;
     private final List<Class> classes;
-    private boolean withDelete=true;
 
-    Adapter(Context context, List<Class> classes) {
+    AdapterwithoutDelete(Context context, List<Class> classes) {
         this.classes = classes;
         this.inflater = LayoutInflater.from(context);
-        this.withDelete=withDelete;
+
     }
     @Override
     public Adapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = inflater.inflate(R.layout.item, parent, false);
-            view.setTag(staticTag);
-            staticTag++;
-            return new ViewHolder(view);
+        View view = inflater.inflate(R.layout.itemclasses, parent, false);
+        view.setTag(staticTag);
+        staticTag++;
+        return new Adapter.ViewHolder(view);
 
     }
 
@@ -38,7 +37,7 @@ public class Adapter  extends RecyclerView.Adapter<Adapter.ViewHolder>{
         Class classroom = classes.get(position);
         holder.nameView.setText(classroom.getNumber());
         holder.describeView.setText(classroom.getClassTeacher().getFullName()+" / "+classroom.getList().length);
-        holder.delete.setTag(staticTag-1);
+
     }
 
     @Override
@@ -48,12 +47,11 @@ public class Adapter  extends RecyclerView.Adapter<Adapter.ViewHolder>{
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         final TextView nameView, describeView;
-        Button delete;
         ViewHolder(View view){
             super(view);
             nameView = (TextView) view.findViewById(R.id.name);
             describeView = (TextView) view.findViewById(R.id.describe);
-            delete =(Button) view.findViewById(R.id.delete);
+
 
         }
     }
