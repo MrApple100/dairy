@@ -10,4 +10,11 @@ public class Elective extends UnitSociety{
     public String getAcademicSubject() {
         return AcademicSubject;
     }
+
+    @Override
+    public String toString() {
+        return "Elective{" +
+                "AcademicSubject='" + AcademicSubject + '\'' +
+                '}';
+    }
 }

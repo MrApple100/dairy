@@ -14,19 +14,20 @@ import java.util.ArrayList;
 public class MyConectionClassandLearners extends AppCompatActivity {
     private ArrayList<Class> classes = new ArrayList<Class>();
     private int temptag=-1;
-
+    MyClass classinthere=new MyClass();
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.creatlearner);
-        MyClass classinthere=new MyClass();
+
         classes=classinthere.getClasses();
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.listclasses2);
         AdapterwithoutDelete adapterclasses = new AdapterwithoutDelete(MyConectionClassandLearners.this, classes);
         recyclerView.setAdapter(adapterclasses);
         RecyclerView recyclerViewlearners = (RecyclerView) findViewById(R.id.listlearners);
         Button button=(Button) findViewById(R.id.button);
+        Button Next=(Button) findViewById(R.id.Next);
         Button add=(Button) findViewById(R.id.addlearner);
 
         EditText NameLearner=(EditText) findViewById(R.id.NameLearner);
@@ -51,19 +52,28 @@ public class MyConectionClassandLearners extends AppCompatActivity {
                                 }
                             }
                             if(check==0){
+                                learner.setCardID();
                                 templistlearners.add(learner);
                             }
                             tempclass.setLearners(templistlearners);
+                            classes.set(temptag,tempclass);
+                            classinthere.setClasses(classes);
                             Adapterlearners adapter = new Adapterlearners(MyConectionClassandLearners.this, templistlearners);
                             recyclerViewlearners.setAdapter(adapter);
                             NameLearner.setText("");
                             Telphone.setText("");
                         }
                         break;
+                    case R.id.Next:
+                        Intent intent=new Intent(MyConectionClassandLearners.this,MyConectionClassAndOtherUnits.class);
+                        startActivity(intent);
+
+                        break;
                 }
             }
         };
         add.setOnClickListener(listener);
+        Next.setOnClickListener(listener);
 
     }
     public void OnClickList(View v) {
@@ -97,8 +107,11 @@ public class MyConectionClassandLearners extends AppCompatActivity {
         for(Learner learner: tempclass.getList()){
             templistlearners.add(learner);
         }
+        System.out.println(v.getTag());
         templistlearners.remove((int)v.getTag());
         tempclass.setLearners(templistlearners);
+        classes.set(temptag,tempclass);
+        classinthere.setClasses(classes);
         Adapterlearners adapter = new Adapterlearners(MyConectionClassandLearners.this, templistlearners);
         recyclerView.setAdapter(adapter);
     }

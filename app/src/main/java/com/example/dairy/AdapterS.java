@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class AdapterS  extends RecyclerView.Adapter<Adapter.ViewHolder>{
+public class AdapterS  extends RecyclerView.Adapter<AdapterS.ViewHolder>{
     private int staticTag=0;
     private String TagId="S";
     private final LayoutInflater inflater;
@@ -23,16 +23,16 @@ public class AdapterS  extends RecyclerView.Adapter<Adapter.ViewHolder>{
         this.inflater = LayoutInflater.from(context);
     }
     @Override
-    public Adapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public AdapterS.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View view = inflater.inflate(R.layout.itemsection, parent, false);
         view.setTag(staticTag);
         staticTag++;
-        return new Adapter.ViewHolder(view);
+        return new AdapterS.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(Adapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(AdapterS.ViewHolder holder, int position) {
         Section classroom = classes.get(position);
         holder.nameView.setText(classroom.getName());
         holder.describeView.setText(classroom.getClassTeacher().FullName+" / "+classroom.getList().length);

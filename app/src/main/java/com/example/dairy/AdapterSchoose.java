@@ -5,39 +5,42 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class AdapterEl  extends RecyclerView.Adapter<AdapterEl.ViewHolder>{
+public class AdapterSchoose  extends RecyclerView.Adapter<AdapterSchoose.ViewHolder>{
     private int staticTag=0;
-    private String TagIdconst="El";
     private final LayoutInflater inflater;
-    private final List<Elective> classes;
+    private final List<Section> classes;
 
-    AdapterEl(Context context, List<Elective> classes) {
+    AdapterSchoose(Context context, List<Section> classes) {
         this.classes = classes;
         this.inflater = LayoutInflater.from(context);
     }
-    @Override
-    public AdapterEl.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = inflater.inflate(R.layout.itemelective, parent, false);
+    public AdapterSchoose.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+        View view = inflater.inflate(R.layout.itemconectionforotherunits, parent, false);
         view.setTag(staticTag);
         staticTag++;
 
-        return new AdapterEl.ViewHolder(view);
+        return new AdapterSchoose.ViewHolder(view);
     }
 
+
+
+
+
     @Override
-    public void onBindViewHolder(AdapterEl.ViewHolder holder, int position) {
-        Elective classroom = classes.get(position);
-        holder.nameView.setText(classroom.getAcademicSubject());
+    public void onBindViewHolder(AdapterSchoose.ViewHolder holder, int position) {
+        Section classroom = classes.get(position);
+        holder.nameView.setText(classroom.getName());
         holder.describeView.setText(classroom.getClassTeacher().FullName+" / "+classroom.getList().length);
-        holder.delete.setTag(staticTag-1);
+
     }
 
     @Override
@@ -47,15 +50,12 @@ public class AdapterEl  extends RecyclerView.Adapter<AdapterEl.ViewHolder>{
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         final TextView nameView, describeView;
-        Button delete;
-        String Tagid;
+        final CheckBox checkBox;
         ViewHolder(View view){
             super(view);
             nameView = (TextView) view.findViewById(R.id.name);
             describeView = (TextView) view.findViewById(R.id.describe);
-            delete =(Button) view.findViewById(R.id.delete);
-            Tagid="El";
-
+            checkBox=(CheckBox) view.findViewById(R.id.checkbox);
         }
     }
 }

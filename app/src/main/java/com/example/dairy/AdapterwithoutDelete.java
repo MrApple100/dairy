@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class AdapterwithoutDelete  extends RecyclerView.Adapter<Adapter.ViewHolder>{
+public class AdapterwithoutDelete  extends RecyclerView.Adapter<AdapterwithoutDelete.ViewHolder>{
     private int staticTag=0;
     private final LayoutInflater inflater;
     private final List<Class> classes;
@@ -23,17 +23,17 @@ public class AdapterwithoutDelete  extends RecyclerView.Adapter<Adapter.ViewHold
 
     }
     @Override
-    public Adapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public AdapterwithoutDelete.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View view = inflater.inflate(R.layout.itemclasses, parent, false);
         view.setTag(staticTag);
         staticTag++;
-        return new Adapter.ViewHolder(view);
+        return new AdapterwithoutDelete.ViewHolder(view);
 
     }
 
     @Override
-    public void onBindViewHolder(Adapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(AdapterwithoutDelete.ViewHolder holder, int position) {
         Class classroom = classes.get(position);
         holder.nameView.setText(classroom.getNumber());
         holder.describeView.setText(classroom.getClassTeacher().getFullName()+" / "+classroom.getList().length);

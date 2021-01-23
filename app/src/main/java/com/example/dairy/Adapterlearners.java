@@ -12,29 +12,30 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class Adapterlearners  extends RecyclerView.Adapter<Adapter.ViewHolder>{
+public class Adapterlearners  extends RecyclerView.Adapter<Adapterlearners.ViewHolder>{
     private int staticTag=0;
     private final LayoutInflater inflater;
     private final List<Learner> learners;
+
 
     Adapterlearners(Context context, List<Learner> learners) {
         this.learners = learners;
         this.inflater = LayoutInflater.from(context);
     }
     @Override
-    public Adapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public Adapterlearners.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View view = inflater.inflate(R.layout.itemlearner, parent, false);
         view.setTag(staticTag);
         staticTag++;
-        return new Adapter.ViewHolder(view);
+        return new Adapterlearners.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(Adapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(Adapterlearners.ViewHolder holder, int position) {
         Learner learner = learners.get(position);
         holder.nameView.setText(learner.getFullName());
-        holder.describeView.setText(learner.getPhone()+"");
+        holder.describeView.setText(learner.getPhone()+" / "+learner.getCardID());
         holder.delete.setTag(staticTag-1);
     }
 
