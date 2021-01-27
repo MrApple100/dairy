@@ -15,7 +15,7 @@
         app:layout_constraintRight_toRightOf="parent"
         android:text=""
         android:button="@color/defaultwhite"
-        android:onClick="Paint"
+        android:onClick="PaintS"
         >
     </CheckBox>
     <TextView

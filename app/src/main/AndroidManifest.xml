@@ -31,6 +31,9 @@
         <activity android:name=".MyConectionClassAndOtherUnits">
 
         </activity>
+        <activity android:name=".MyMainCenter">
+
+        </activity>
     </application>
 
 </manifest>

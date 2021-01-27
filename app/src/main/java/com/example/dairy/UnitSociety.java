@@ -7,6 +7,7 @@ public class UnitSociety {
     private Teacher ClassTeacher;
     protected Learner[] Learners=new Learner[0];
     private Mark AllMarksOfLearners[][]=new Mark[0][0];
+    private SavePaint[] savinglist=new SavePaint[2];
     public Learner[] getList(){
         return Learners;
     }
@@ -39,6 +40,15 @@ public class UnitSociety {
         }
         return marks;
     }
+
+    public SavePaint getSavinglist(int index) {
+        return savinglist[index];
+    }
+
+    public void setSavinglist(SavePaint savinglist,int index) {
+        this.savinglist[index] = savinglist;
+    }
+
     private int getlengthofParrents(){
         int k=0;
         for(int i=0;i<Learners.length;i++)

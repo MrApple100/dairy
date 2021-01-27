@@ -1,9 +1,11 @@
 package com.example.dairy;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.Nullable;
@@ -12,6 +14,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class MyConectionClassAndOtherUnits extends AppCompatActivity {
@@ -25,11 +28,38 @@ public class MyConectionClassAndOtherUnits extends AppCompatActivity {
 
     ArrayList<Section> tempsections=new ArrayList<Section>();
     ArrayList<Elective> tempelectives=new ArrayList<Elective>();
+    ArrayList<Integer> savinglistEl=new ArrayList<Integer>();
+    ArrayList<Integer> savinglistS=new ArrayList<Integer>();
+
+    public ArrayList<Class> getClasses() {
+        return classes;
+    }
+
+    public void setClasses(ArrayList<Class> classes) {
+        this.classes = classes;
+    }
+
+    public ArrayList<Section> getSections() {
+        return sections;
+    }
+
+    public void setSections(ArrayList<Section> sections) {
+        this.sections = sections;
+    }
+
+    public ArrayList<Elective> getElectives() {
+        return electives;
+    }
+
+    public void setElectives(ArrayList<Elective> electives) {
+        this.electives = electives;
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.creatconectionclassandotherunit);
+
 
         electives=mous.getElectives();
 
@@ -37,6 +67,7 @@ public class MyConectionClassAndOtherUnits extends AppCompatActivity {
 
         classes=mc.getClasses();
         Button accept=(Button) findViewById(R.id.accept);
+        Button Next=(Button) findViewById(R.id.Next);
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.listclasses);
         AdapterwithoutDelete adapterclasses = new AdapterwithoutDelete(MyConectionClassAndOtherUnits.this, classes);
@@ -49,95 +80,119 @@ public class MyConectionClassAndOtherUnits extends AppCompatActivity {
                         if(temptag!=-1) {
                             tempclass = classes.get(temptag);
                             tempclass.setdefaultElective(tempelectives);
-                            System.out.println(tempelectives);
+                            SavePaint savePaintEl=new SavePaint(savinglistEl);
+                            SavePaint savePaintS=new SavePaint(savinglistS);
+                            tempclass.setSavinglist(savePaintEl,0);
+                            tempclass.setSavinglist(savePaintS,1);
                             tempclass.setdefaultSection(tempsections);
                             classes.set(temptag, tempclass);
                             mc.setClasses(classes);
 
                         }
                             break;
+                    case R.id.Next:
+                        Intent intent=new Intent(MyConectionClassAndOtherUnits.this,MyMainCenter.class);
+                        startActivity(intent);
+
+                        break;
 
                 }
             }
         };
         accept.setOnClickListener(listener);
+        Next.setOnClickListener(listener);
 
     }
     public void OnClickList(View v) {
         tempelectives.clear();
         tempsections.clear();
+        savinglistEl.clear();
+        savinglistS.clear();
         temptag=(int)v.getTag();
         tempclass=classes.get(temptag);
-        RecyclerView rwlistel=(RecyclerView) findViewById(R.id.listEl);
+
         System.out.println(tempclass.getdefaultElective().length);
         RecyclerView recyclerViewEl = (RecyclerView) findViewById(R.id.listEl);
         RecyclerView recyclerViewS = (RecyclerView) findViewById(R.id.listS);
         ArrayList<Elective> templistEl=new ArrayList<Elective>();
         ArrayList<Section> templistS=new ArrayList<Section>();
+
+
         for(Elective elective: electives){
                 templistEl.add(elective);
         }
-        AdapterElchoose adapter = new AdapterElchoose(MyConectionClassAndOtherUnits.this, templistEl);
-        recyclerViewEl.setAdapter(adapter);
-
         for(int i=0;i<electives.size();i++){
             int ok=0;
             for(Elective defaultelective: tempclass.getdefaultElective()){
-                if(electives.get(i)==defaultelective){
-                    ok=1;
-                    ConstraintLayout Cl=(ConstraintLayout) rwlistel.getChildAt(i);
-                    CheckBox checkBox=(CheckBox) Cl.findViewWithTag(Cl.getTag());
-                    System.out.println(checkBox);
-                    checkBox.isChecked();
-                }
-            }
-        }
-        for(Section section: sections){
-            int ok=0;
-            for(Section defaultsection: tempclass.getdefaultSection()){
-                if(section==defaultsection){
+                if(electives.get(i).getAcademicSubject().equals(defaultelective.getAcademicSubject())){
                     ok=1;
                 }
             }
             if(ok==1){
-                templistS.add(section);
-                AdapterSchoose adapters = new AdapterSchoose(MyConectionClassAndOtherUnits.this, templistS);
-                recyclerViewS.setAdapter(adapter);
+                savinglistEl.add(1);
             }else{
-                templistS.add(section);
-                AdapterSchoose adapters = new AdapterSchoose(MyConectionClassAndOtherUnits.this, templistS);
-                recyclerViewS.setAdapter(adapter);
+                savinglistEl.add(0);
             }
         }
+        AdapterElchoose adapterEl = new AdapterElchoose(MyConectionClassAndOtherUnits.this, templistEl,savinglistEl);
+        recyclerViewEl.setAdapter(adapterEl);
+        for(Section section: sections){
+            templistS.add(section);
+        }
+        for(int i=0;i<sections.size();i++){
+            int ok=0;
+            for(Section defaultsection: tempclass.getdefaultSection()){
+                if(sections.get(i).getName().equals(defaultsection.getName())){
+                    ok=1;
+                }
+            }
+            if(ok==1){
+                savinglistS.add(1);
+            }else{
+                savinglistS.add(0);
+            }
+        }
+        AdapterSchoose adapterS = new AdapterSchoose(MyConectionClassAndOtherUnits.this, templistS,savinglistS);
+        recyclerViewS.setAdapter(adapterS);
+
+
 
     }
-    public void Paint(View view){
+    public void PaintS(View view){
         CheckBox checkBox=(CheckBox) view;
-        System.out.println(((ConstraintLayout)view.getParent()).getTag());
         tempclass=classes.get(temptag);
+
+        if(checkBox.isChecked()){
+            checkBox.setBackgroundColor(getColor(R.color.teal_200));
+            System.out.println((int)view.getTag());
+            tempsections.add(sections.get((int)checkBox.getTag()));
+            savinglistS.set((int)checkBox.getTag(),1);
+        }
+        else{
+            checkBox.setBackgroundColor(getColor(R.color.defaultwhite));
+            tempsections.remove(sections.get((int)checkBox.getTag()));
+            savinglistS.set((int)checkBox.getTag(),0);
+
+        }
+    }
+    public void PaintEl(View view){
+        CheckBox checkBox=(CheckBox) view;
+        tempclass=classes.get(temptag);
+
+
         if(checkBox.isChecked()){
             checkBox.setBackgroundColor(getColor(R.color.teal_200));
             tempelectives.add(electives.get((int)checkBox.getTag()));
-
+            savinglistEl.set((int)checkBox.getTag(),1);
         }
         else{
             checkBox.setBackgroundColor(getColor(R.color.defaultwhite));
             tempelectives.remove(electives.get((int)checkBox.getTag()));
-        }
-    }
-    /*public void PaintS(View view){
-        CheckBox checkBox=(CheckBox) findViewById(view.getId());
-        System.out.println(view.getId());
-        ConstraintLayout head=(ConstraintLayout) checkBox.getParent();
-        Class tempclass=classes.get(temptag);
-        if(checkBox.isChecked()){
-            head.setBackgroundColor(getColor(R.color.teal_200));
-            tempsections.add(sections.get((int)head.getTag()));
+            savinglistEl.set((int)checkBox.getTag(),0);
 
         }
-        else{
-            head.setBackgroundColor(getColor(R.color.defaultwhite));
-        }
-    }*/
+
+    }
+
 
 }
