@@ -1,0 +1,4 @@
+com/example/matrixofedittext/BuildConfig.java
+ com.example.matrixofedittext.BuildConfig
+com/example/matrixofedittext/MainActivity.java
+ com.example.matrixofedittext.MainActivity

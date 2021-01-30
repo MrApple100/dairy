@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MySchool extends AppCompatActivity {
-    static School school1;
+    private static School school1;
 
     public static School getSchool1() {
         return school1;

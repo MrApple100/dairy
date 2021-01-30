@@ -18,13 +18,15 @@ import java.util.List;
 
 
 public class MyConectionClassAndOtherUnits extends AppCompatActivity {
+    MySchool myschool=new MySchool();
+    School school;
     MyOtherUnitsSociety mous=new MyOtherUnitsSociety();
     MyClass mc=new MyClass();
     int temptag =-1;
     Class tempclass;
-    ArrayList<Class> classes=new ArrayList<Class>();
-    ArrayList<Section> sections=new ArrayList<Section>();
-    ArrayList<Elective> electives=new ArrayList<Elective>();
+    private static ArrayList<Class> classes=new ArrayList<Class>();
+    private static ArrayList<Section> sections=new ArrayList<Section>();
+    private static ArrayList<Elective> electives=new ArrayList<Elective>();
 
     ArrayList<Section> tempsections=new ArrayList<Section>();
     ArrayList<Elective> tempelectives=new ArrayList<Elective>();
@@ -59,13 +61,14 @@ public class MyConectionClassAndOtherUnits extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.creatconectionclassandotherunit);
-
+        school=myschool.getSchool1();
 
         electives=mous.getElectives();
 
         sections=mous.getSections();
 
         classes=mc.getClasses();
+        System.out.println(classes);
         Button accept=(Button) findViewById(R.id.accept);
         Button Next=(Button) findViewById(R.id.Next);
 
@@ -91,6 +94,17 @@ public class MyConectionClassAndOtherUnits extends AppCompatActivity {
                         }
                             break;
                     case R.id.Next:
+                        for(Class classroom: classes){
+                            school.addClasses(classroom);
+                        }
+                        for(Elective elective: electives){
+                            school.addElective(elective);
+                        }
+                        for(Section section:sections){
+                            school.addSection(section);
+                        }
+                        school.UpdateLearners();
+                        myschool.setSchool1(school);
                         Intent intent=new Intent(MyConectionClassAndOtherUnits.this,MyMainCenter.class);
                         startActivity(intent);
 
