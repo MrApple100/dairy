@@ -62,7 +62,7 @@ public class School{
 
         return marks;
     }
-    public Mark[][] getElectronicJournal(Learner learner){//dont work
+    public Mark[][] getElectronicJournal(Learner learner){
         int lenSubjects = learner.getElective().length+learner.getSection().length;
         Mark marks[][]=new Mark[lenSubjects][];
         for(int i=0;i<lenSubjects;i++){
