@@ -82,11 +82,17 @@ public class MyConectionClassAndOtherUnits extends AppCompatActivity {
                     case R.id.accept:
                         if(temptag!=-1) {
                             tempclass = classes.get(temptag);
+                            for(Elective elective:tempelectives){
+                                elective.setLearners(tempclass.getList());
+                            }
                             tempclass.setdefaultElective(tempelectives);
                             SavePaint savePaintEl=new SavePaint(savinglistEl);
                             SavePaint savePaintS=new SavePaint(savinglistS);
                             tempclass.setSavinglist(savePaintEl,0);
                             tempclass.setSavinglist(savePaintS,1);
+                            for(Section section:tempsections){
+                                section.setLearners(tempclass.getList());
+                            }
                             tempclass.setdefaultSection(tempsections);
                             classes.set(temptag, tempclass);
                             mc.setClasses(classes);

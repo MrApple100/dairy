@@ -5,6 +5,7 @@ public class Elective extends UnitSociety{
 
     public Elective(String academicSubject) {
         AcademicSubject = academicSubject;
+
     }
 
     public String getAcademicSubject() {

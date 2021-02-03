@@ -11,7 +11,12 @@ public class Mark {
         this.subject = subject;
         this.date = date;
         this.IDLearner=IDLearner;
-
+    }
+    public Mark() {
+        this.mark = "";
+        this.subject = "";
+        this.date = -1;
+        this.IDLearner=-1;
     }
 
     public int getIDLearner() {
@@ -48,9 +53,9 @@ public class Mark {
 
     @Override
     public String toString() {
-        return "mark='" + mark + '\'' +
+        return " {mark='" + mark + '\'' +
                 ", subject='" + subject + '\'' +
                 ", date=" + date +
-                '}';
+                ",ID="+IDLearner+"}";
     }
 }
